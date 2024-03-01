@@ -1,0 +1,183 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University/School Laboratory Report
+% LaTeX Template
+% Version 3.1 (25/3/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Linux and Unix Users Group at Virginia Tech Wiki 
+% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt,a4paper,twoside,openright]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{nomencl}
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{fancyhdr}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+\usepackage{pdfpages}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{braket}
+\usepackage{dcolumn}% Align table columns on decimal point
+%\usepackage{indentfirst}
+%\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
+%\usepackage[version=3]{mhchem} % Package for chemical equation typesetting
+
+%----------------------------------------------------------------------------------------
+%	FONT SETTINGS
+%----------------------------------------------------------------------------------------
+
+\setmainfont[
+    Extension=.otf,
+    UprightFont=NewCM10-Regular,
+    BoldFont=NewCM10-Bold,
+    ItalicFont=NewCM10-Italic,
+    BoldItalicFont=NewCM10-BoldItalic
+]{NewComputerModern}
+
+\setCJKmainfont[Extension=.otf,
+    UprightFont=SourceHanSerifCN-Regular,
+    BoldFont=SourceHanSerifCN-Bold,
+    ItalicFont=ukai.ttc,
+]{SourceHanSerifCN}
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT SETTINGS
+%----------------------------------------------------------------------------------------
+
+%\geometry{a4paper,scale=0.8}
+\geometry{a4paper,left=1.6in,right=1.2in,top=1.2in,bottom=1.2in}
+
+\graphicspath{{figures/}}
+\includeonly{
+    data/00-titlepage,
+    data/00-abstract,
+    data/00-nomenclature,
+    data/01-chapter01,
+    data/02-chapter02,
+    data/03-chapter03,
+    data/04-chapter04,
+    data/05-acknowledge
+}
+
+\onehalfspacing
+\setlength\parindent{4ex}
+\setlength{\headheight}{14pt}
+
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+
+\makenomenclature
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+	
+\pagenumbering{gobble}
+
+%----------------------------------------------------------------------------------------
+%	TITLEPAGE
+%----------------------------------------------------------------------------------------
+
+%\includepdf{coverpage/coverpage.pdf}
+\include{data/00-titlepage}
+
+\cleardoublepage
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT
+%----------------------------------------------------------------------------------------
+
+\include{data/00-abstract}\cleardoublepage
+
+\pagenumbering{Roman}\setcounter{page}{1}
+
+%----------------------------------------------------------------------------------------
+%	HEADING AND FOOTING
+%----------------------------------------------------------------------------------------
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\textsl{\rightmark}}
+\fancyhead[RO]{\textsl{\leftmark}}
+\fancyfoot[LE,RO]{\thepage}
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\tableofcontents\cleardoublepage
+
+%----------------------------------------------------------------------------------------
+%	NOMENCLATURE
+%----------------------------------------------------------------------------------------
+
+\include{data/00-nomenclature}\printnomenclature\cleardoublepage
+
+\pagenumbering{arabic}\setcounter{page}{1}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+
+\include{data/01-chapter01}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+
+\include{data/02-chapter02}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+
+\include{data/03-chapter03}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 4
+%----------------------------------------------------------------------------------------
+
+\include{data/04-chapter04}
+
+%----------------------------------------------------------------------------------------
+%	ACKNOWLEDGE
+%----------------------------------------------------------------------------------------
+
+\include{data/05-acknowledge}
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\bibliographystyle{abbrv}
+
+\bibliography{ref/refs}
+
+%----------------------------------------------------------------------------------------
+
+
+\end{document}
