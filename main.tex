@@ -7,7 +7,7 @@
 % http://www.LaTeXTemplates.com
 %
 % Original author:
-% Linux and Unix Users Group at Virginia Tech Wiki 
+% Linux and Unix Users Group at Virginia Tech Wiki
 % (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
 %
 % License:
@@ -21,26 +21,29 @@
 
 \documentclass[11pt,a4paper,twoside,openright]{report}
 
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc} % Redundant with XeLaTeX
+%\usepackage[T1]{fontenc} % Redundant with fontspec + XeLaTeX
 \usepackage{fontspec}
 \usepackage{xeCJK}
-\usepackage{amsmath,amssymb}
+\usepackage{unicode-math}
+\usepackage{amsmath}
 \usepackage{geometry}
 \usepackage{setspace}
 \usepackage{nomencl}
-\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{graphicx}
 \usepackage{fancyhdr}
 \usepackage{subcaption}
 \usepackage{wrapfig}
-\usepackage{pdfpages}
+%\usepackage{pdfpages} % Removed: coverpage no longer used
 \usepackage{multirow}
 \usepackage{hyperref}
 \usepackage{float}
 \usepackage{url}
 \usepackage{booktabs}
 \usepackage{braket}
-\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{dcolumn}
+\usepackage[backend=biber]{biblatex}
+\usepackage{lipsum}
 %\usepackage{indentfirst}
 %\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
 %\usepackage[version=3]{mhchem} % Package for chemical equation typesetting
@@ -49,25 +52,48 @@
 %	FONT SETTINGS
 %----------------------------------------------------------------------------------------
 
-\setmainfont[
+\setmainfont{NewComputerModern}[
+    Path=fonts/,
     Extension=.otf,
     UprightFont=NewCM10-Regular,
     BoldFont=NewCM10-Bold,
     ItalicFont=NewCM10-Italic,
-    BoldItalicFont=NewCM10-BoldItalic
-]{NewComputerModern}
+    BoldItalicFont=NewCM10-BoldItalic,
+    FontFace={l}{n}{Font=NewCM10-Book.otf},
+    FontFace={l}{it}{Font=NewCM10-BookItalic.otf},
+]
 
-\setCJKmainfont[Extension=.otf,
-    UprightFont=SourceHanSerifCN-Regular,
-    BoldFont=SourceHanSerifCN-Bold,
+\setsansfont{NewComputerModernSans}[
+    Path=fonts/,
+    Extension=.otf,
+    UprightFont=NewCMSans10-Regular,
+    BoldFont=NewCMSans10-Bold,
+    ItalicFont=NewCMSans10-Oblique,
+    BoldItalicFont=NewCMSans10-BoldOblique,
+    FontFace={l}{n}{Font=NewCMSans10-Book.otf},
+    FontFace={l}{it}{Font=NewCMSans10-BookOblique.otf},
+]
+
+\setmathfont{NewCMMath-Regular.otf}[Path=fonts/]
+
+\setCJKmainfont{SourceHanSerifSC-Regular.otf}[
+    Path=fonts/,
+    BoldFont=SourceHanSerifSC-Bold.otf,
     ItalicFont=ukai.ttc,
-]{SourceHanSerifCN}
+    BoldItalicFont=ukai.ttc,
+    FontFace={l}{n}{Font=SourceHanSerifSC-Light.otf},
+]
+
+\setCJKsansfont{SourceHanSansSC-Regular.otf}[
+    Path=fonts/,
+    BoldFont=SourceHanSansSC-Bold.otf,
+    FontFace={l}{n}{Font=SourceHanSansSC-Light.otf},
+]
 
 %----------------------------------------------------------------------------------------
 %	DOCUMENT SETTINGS
 %----------------------------------------------------------------------------------------
 
-%\geometry{a4paper,scale=0.8}
 \geometry{a4paper,left=1.6in,right=1.2in,top=1.2in,bottom=1.2in}
 
 \graphicspath{{figures/}}
@@ -86,23 +112,24 @@
 \setlength\parindent{4ex}
 \setlength{\headheight}{14pt}
 
-\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+\renewcommand{\labelenumi}{\alph{enumi}.}
 
 \makenomenclature
+
+\addbibresource{ref/refs.bib}
 
 %----------------------------------------------------------------------------------------
 %	DOCUMENT INFORMATION
 %----------------------------------------------------------------------------------------
 
 \begin{document}
-	
+
 \pagenumbering{gobble}
 
 %----------------------------------------------------------------------------------------
 %	TITLEPAGE
 %----------------------------------------------------------------------------------------
 
-%\includepdf{coverpage/coverpage.pdf}
 \include{data/00-titlepage}
 
 \cleardoublepage
@@ -173,9 +200,7 @@
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
 
-\bibliographystyle{abbrv}
-
-\bibliography{ref/refs}
+\printbibliography
 
 %----------------------------------------------------------------------------------------
 
